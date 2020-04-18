@@ -42,6 +42,11 @@ public partial class GameManager : MonoBehaviour
 
     bool paused = false;
 
+    public PlayerController player;
+    public TurtleController turtle;
+
+
+
 
     // Start is called before the first frame update
     void Start_W()
@@ -94,11 +99,11 @@ public partial class GameManager : MonoBehaviour
 
     public void UpdatePlayer()
     {
-       
+        player.UpdatePlayer(playerUpgrades);
     }
     public void UpdateTurtle()
     {
-
+        turtle.UpdateTurtle(turtleUpgrades);
     }
 
     public void TogglePause()

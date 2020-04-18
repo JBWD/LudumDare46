@@ -6,7 +6,7 @@ public partial class PlayerController : MonoBehaviour
 {
     private void Awake_W()
     {
-        
+
     }
     [System.Serializable]
     public class EquippedItems
@@ -53,6 +53,14 @@ public partial class PlayerController : MonoBehaviour
             {
                 item.equippedObject.SetActive(false);
             }
+        }
+    }
+
+    public void UpdatePlayer(Dictionary<PlayerUpgradeValues, int> upgrades)
+    {
+        foreach (KeyValuePair<PlayerUpgradeValues, int> upgrade in upgrades)
+        {
+
         }
     }
 }

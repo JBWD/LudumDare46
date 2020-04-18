@@ -52,4 +52,13 @@ public partial class TurtleController : MonoBehaviour
             }
         }
     }
+
+
+    public void UpdateTurtle(Dictionary<TurtleUpgradeValues, int> upgrades)
+    {
+        foreach(KeyValuePair<TurtleUpgradeValues,int> upgrade in upgrades)
+        {
+            
+        }
+    }
 }
