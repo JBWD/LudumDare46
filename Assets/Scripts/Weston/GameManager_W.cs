@@ -70,14 +70,14 @@ public partial class GameManager : MonoBehaviour
         if (playerUpgrades.ContainsKey(upgrade))
         {           
             playerUpgrades[upgrade] = playerUpgrades[upgrade] +1;
-            
+            Debug.Log("Upgraded Turtle");
         }
         else
         {
             playerUpgrades.Add(upgrade, 1);
         }
         currency -= cost;
-        UpdatePlayer();
+        UpdatePlayer(upgrade,playerUpgrades[upgrade]);
         return true;
     }
 
@@ -88,20 +88,54 @@ public partial class GameManager : MonoBehaviour
         {
             playerUpgrades[upgrade] = playerUpgrades[upgrade] - 1;
             currency += cost;
-            UpdateTurtle();
+            UpdatePlayer(upgrade,playerUpgrades[upgrade]);
             return true;
         }
         else
             return false;
        
     }
-
-
-    public void UpdatePlayer()
+    public bool AddTurtleUpgrade(TurtleUpgradeValues upgrade, int cost)
     {
-        player.UpdatePlayer(playerUpgrades);
+        if (currency < cost)
+        {
+            return false;
+        }
+        if (turtleUpgrades.ContainsKey(upgrade))
+        {
+            turtleUpgrades[upgrade] = turtleUpgrades[upgrade] + 1;
+
+        }
+        else
+        {
+            turtleUpgrades.Add(upgrade, 1);
+        }
+        currency -= cost;
+        UpdateTurtle(upgrade,turtleUpgrades[upgrade]);
+        Debug.Log("Upgraded Turtle");
+        return true;
     }
-    public void UpdateTurtle()
+
+    public bool SubtractTurtleUpgrade(TurtleUpgradeValues upgrade, int cost)
+    {
+
+        if (turtleUpgrades.ContainsKey(upgrade) && turtleUpgrades[upgrade] > 0)
+        {
+            turtleUpgrades[upgrade] = turtleUpgrades[upgrade] - 1;
+            currency += cost;
+            UpdateTurtle(upgrade, turtleUpgrades[upgrade]);
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public void UpdatePlayer(PlayerUpgradeValues upgrade, int level)
+    {
+        player.UpdatePlayer(upgrade, level);
+    }
+    public void UpdateTurtle(TurtleUpgradeValues upgrade, int level)
     {
         turtle.UpdateTurtle(turtleUpgrades);
     }
@@ -126,4 +160,23 @@ public partial class GameManager : MonoBehaviour
         //Keeps Everything moving turns on PlayerController and TurtleController
     }
 
+    public int GetCurrentUpgradeLevel(TurtleUpgradeValues upgrade)
+    {
+        if (turtleUpgrades.ContainsKey(upgrade))
+            return turtleUpgrades[upgrade];
+        return 0;
+    }
+
+    public int GetCurrentUpgradeLevel(PlayerUpgradeValues upgrade)
+    {
+        if (playerUpgrades.ContainsKey(upgrade))
+            return playerUpgrades[upgrade];
+        return 0;
+    }
+
+
+    public void GameOver()
+    {
+        //Display the GameOverScreen;
+    }
 }
