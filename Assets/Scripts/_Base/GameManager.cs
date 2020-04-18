@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public partial class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    void Singleton()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
 
-    Dictionary<string, int> playerUpgrades = new Dictionary<string, int>();
-    Dictionary<string, int> turtleUpgrades = new Dictionary<string, int>();
-
-
+    private void Awake()
+    {
+        Singleton();
+        DontDestroyOnLoad(gameObject);
+        
+    }
 
     // Start is called before the first frame update
     void Start()
