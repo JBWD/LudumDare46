@@ -5,6 +5,12 @@ using UnityEngine;
 public partial class GameManager : MonoBehaviour
 {
 
+
+    Dictionary<string, int> playerUpgrades = new Dictionary<string, int>();
+    Dictionary<string, int> turtleUpgrades = new Dictionary<string, int>();
+
+
+
     // Start is called before the first frame update
     void Start()
     {
