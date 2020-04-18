@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/_Base.meta
 guid: 4faa2bd1ec6957b44ac9afe76f7ac987
+=======
+guid: cd94f44a6c720b447aa5721a43be3c3b
+>>>>>>> bbcc558f87d2839e812ae98804815e98afffe268:Assets/SoundPlayer/EnumerationFlags/Attributes.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Steve.meta
 guid: 841baafa539ba5e4da6882cb1f37388f
+=======
+guid: f459a7fc71f9889448881fce1d76e9e6
+>>>>>>> bbcc558f87d2839e812ae98804815e98afffe268:Assets/SoundPlayer.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

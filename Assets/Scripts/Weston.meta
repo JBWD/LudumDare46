@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Weston.meta
 guid: 273d2c6ba15cfd94fab9deed9004ae21
+=======
+guid: 0367f9fc83ce3924392f4fd246f5f604
+>>>>>>> bbcc558f87d2839e812ae98804815e98afffe268:Assets/SoundPlayer/EnumerationFlags.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

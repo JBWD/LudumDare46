@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Weston/PlayerController_W.cs.meta
 guid: f9549f5913f5b71479e958575e2e5535
+=======
+guid: 48a9a20f49ce1e94fbba972dbf82b0c2
+>>>>>>> bbcc558f87d2839e812ae98804815e98afffe268:Assets/SoundPlayer/EnumerationFlags/Attributes/EnumFlagsAttribute.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
