@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class PlayerController : MonoBehaviour
+
+public partial class TurtleController : MonoBehaviour
 {
-    private void Awake_W()
-    {
-        
-    }
     [System.Serializable]
     public class EquippedItems
     {
-        public PlayerUpgradeValues upgradeEnum;
+        public TurtleUpgradeValues upgradeEnum;
         public GameObject equippedObject;
 
     }
@@ -25,27 +22,27 @@ public partial class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start_W()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update_W()
     {
-
+        
     }
 
 
-    public void TurnOnItem(PlayerUpgradeValues turtleUpgrade)
+    public void TurnOnItem(TurtleUpgradeValues turtleUpgrade)
     {
-        foreach (EquippedItems item in items)
+        foreach(EquippedItems item in items)
         {
-            if (item.upgradeEnum == turtleUpgrade)
+            if(item.upgradeEnum == turtleUpgrade)
             {
                 item.equippedObject.SetActive(true);
             }
         }
     }
-    public void TurnOffItem(PlayerUpgradeValues turtleUpgrade)
+    public void TurnOffItem(TurtleUpgradeValues turtleUpgrade)
     {
         foreach (EquippedItems item in items)
         {
