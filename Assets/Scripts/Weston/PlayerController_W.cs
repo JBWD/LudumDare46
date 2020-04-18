@@ -9,15 +9,15 @@ public partial class PlayerController : MonoBehaviour
 
     }
    
-
     public float moveSpeedChanger = .5f;
     public float currentMoveSpeed = 2f;
+
+
     [System.Serializable]
     public class EquippedItems
     {
         public PlayerUpgradeValues upgradeEnum;
         public GameObject equippedObject;
-
     }
 
     public List<EquippedItems> items = new List<EquippedItems>();

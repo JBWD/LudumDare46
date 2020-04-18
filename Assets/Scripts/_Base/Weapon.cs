@@ -8,8 +8,8 @@ public partial class Weapon : MonoBehaviour
     public enum FireMode
     { 
         OneLane,
-        TwoLanes,
-        ThreeLanes
+        //TwoLanes,
+       // ThreeLanes
     }
 
 
@@ -21,7 +21,7 @@ public partial class Weapon : MonoBehaviour
     public float LaneDistance;
 
 
-    private float fireTime = 0;
+    protected float fireTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,22 +41,21 @@ public partial class Weapon : MonoBehaviour
 
     public virtual void Fire()
     {
-        if(FireSound != null)
+        Vector2 target = Camera.main.ScreenToWorldPoint((Vector2)(Input.mousePosition));
+
+
+        if (FireSound != null)
             SoundManager.Instance.PlaySound(MixerPlayer.Instantiations, FireSound);
         switch (fireMode)
         {
             case FireMode.OneLane:
-                Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
+                Vector2 myPos = new Vector2(transform.position.x, transform.position.y + 1);
+                Vector2 direction = target - myPos;
+                direction.Normalize();
+                GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, myPos, Quaternion.identity);
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<Projectile>().ProjectileSpeed;
                 break;
-            case FireMode.TwoLanes:
-                Instantiate(ProjectilePrefab, transform.position + new Vector3(0, LaneDistance), Quaternion.identity);
-                Instantiate(ProjectilePrefab, transform.position + new Vector3(0, -LaneDistance), Quaternion.identity);
-                break;
-            case FireMode.ThreeLanes:
-                Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
-                Instantiate(ProjectilePrefab, transform.position + new Vector3(0, LaneDistance), Quaternion.identity);
-                Instantiate(ProjectilePrefab, transform.position + new Vector3(0, -LaneDistance), Quaternion.identity);
-                break;
+            
             
         }
         
