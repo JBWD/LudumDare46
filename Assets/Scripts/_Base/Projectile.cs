@@ -20,7 +20,6 @@ public partial class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.velocity = new Vector2(ProjectileSpeed, 0);
     }
 
 
