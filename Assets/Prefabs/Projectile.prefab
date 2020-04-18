@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fbbd6d5838c7546a075010e4219b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileSpeed: 1
+  ProjectileSpeed: 3
   destructionSound: {fileID: 8300000, guid: 1fdc9e99e77c901448061cfac708c635, type: 3}
   destructionPrefab: {fileID: 5901427738391921381, guid: 4718dd96f45592342b7177f47ac78ade,
     type: 3}
