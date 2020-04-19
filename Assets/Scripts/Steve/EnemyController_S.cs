@@ -23,7 +23,7 @@ public partial class EnemyController : MonoBehaviour
     void Start_S()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
-        movementVector = new Vector2(Random.Range(2f, 8f), Random.Range(-4.5f, 4.5f));
+        movementVector = GetMovementVector();
         changeTimerCD = changeTimer;
         Mathf.Clamp(attackChance, 0, 100);
     }
@@ -72,6 +72,13 @@ public partial class EnemyController : MonoBehaviour
     {
         //print(gameObject.name + " attacks!");
         gameObject.GetComponent<EnemyWeapon>().Fire();
+        movementVector = GetMovementVector();
+        state = State.Moving;
+    }
+
+    protected Vector2 GetMovementVector()
+    {
+        return new Vector2(Random.Range(2f, 8f), Random.Range(-4.5f, 4.5f));
     }
 
     protected void TakeDamage(float damage)
@@ -81,9 +88,35 @@ public partial class EnemyController : MonoBehaviour
         {
             //DIE!!!!!!!
             //cool fun death effects go here
+            Instantiate(FindObjectOfType<GameManager>().currencyPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine("ShowHit");
+        }
         //print(gameObject.name + " took " + damage + " damage!");
+    }
+
+    protected IEnumerator ShowHit()
+    {
+
+        float ElapsedTime = 0;
+        float TotalTime = .1f;
+        while (ElapsedTime < TotalTime)
+        {
+            //Debug.Log("Starting Infestation!");
+            ElapsedTime += Time.deltaTime;
+            this.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 1, 1, 1f), new Color(1, 0, 0, 1f), (ElapsedTime / TotalTime));
+            yield return new WaitForEndOfFrame();
+        }
+        ElapsedTime = 0;
+        while (ElapsedTime < TotalTime)
+        {
+            ElapsedTime += Time.deltaTime;
+            this.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 0, 0, 1f), new Color(1, 1, 1, 1f), (ElapsedTime / TotalTime));
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

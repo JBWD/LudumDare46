@@ -31,7 +31,7 @@ public partial class TurtleController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
             TakeDamage(collision.GetComponent<Projectile>().damage);
         }
