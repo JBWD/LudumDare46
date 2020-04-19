@@ -39,6 +39,9 @@ public partial class PlayerController: MonoBehaviour
         {
             movementVector += Vector2.left;
         }
-        rbody.MovePosition(rbody.position + (movementVector.normalized * moveSpeed));
+        //rbody.MovePosition(rbody.position + (movementVector.normalized * moveSpeed));
+        rbody.AddForce(movementVector.normalized * moveSpeed);
     }
+
+    //ADD TAKE DAMAGE FUNCTION
 }

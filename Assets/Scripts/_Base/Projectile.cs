@@ -5,10 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public partial class Projectile : MonoBehaviour
 {
-    
-    
+
+
     private Rigidbody2D _rb;
     public float ProjectileSpeed = 1;
+    public float damage = 1;
+    public string parentTag = "";
     public AudioClip destructionSound;
     public GameObject destructionPrefab;
 
@@ -20,22 +22,34 @@ public partial class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public void SetTag(string tag)
+    {
+        parentTag = tag;
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (parentTag != collision.gameObject.tag)
         {
-            GameObject obj = Instantiate(destructionPrefab, transform.position, Quaternion.identity);
-            Destroy(obj, 2);
-            if (destructionSound != null)
+            if (collision.tag == "Player" || collision.tag == "Turtle" || collision.tag == "Enemy")
             {
-                CCS.SoundPlayer.SoundManager.Instance.PlaySound(CCS.SoundPlayer.MixerPlayer.Explosions, destructionSound);
+                GameObject obj = Instantiate(destructionPrefab, transform.position, Quaternion.identity);
+                Destroy(obj, 2);
+                if (destructionSound != null)
+                {
+                    CCS.SoundPlayer.SoundManager.Instance.PlaySound(CCS.SoundPlayer.MixerPlayer.Explosions, destructionSound);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
-
         }
-
     }
 }

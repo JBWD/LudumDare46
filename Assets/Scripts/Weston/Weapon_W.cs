@@ -7,8 +7,7 @@ public partial class Weapon : MonoBehaviour
 
     public int _baseDamage = 20;
     public int damageRange = 10;
-    [SerializeField]
-    private int currentDamage = 20;
+    public int currentDamage = 20;
     [SerializeField]
     private float currentFireRate = .5f;
     public int upgradeDamageChanger =  6;

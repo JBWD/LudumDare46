@@ -13,7 +13,7 @@ public partial class EnemyWeapon
     public override void Update()
     {
         fireTime += Time.deltaTime;
-        if (target != null && firerate < fireTime)
+        if (target != null && firerate < fireTime && firerate > 0)
         {
             Fire();
         }
@@ -36,6 +36,8 @@ public partial class EnemyWeapon
                 direction.Normalize();
                 GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, myPos, Quaternion.identity);
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<Projectile>().ProjectileSpeed;
+                projectile.GetComponent<Projectile>().SetDamage(currentDamage);
+                projectile.GetComponent<Projectile>().SetTag(gameObject.tag);
                 break;
         }
         fireTime = 0;

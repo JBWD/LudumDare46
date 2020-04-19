@@ -48,6 +48,7 @@ public partial class EnemyController : MonoBehaviour
                 else
                 {
                     state = State.Idle;
+                    gameObject.GetComponent<EnemyWeapon>().SetTarget(FindObjectOfType<TurtleController>().transform);
                     return;
                 }
             }
@@ -69,15 +70,37 @@ public partial class EnemyController : MonoBehaviour
 
     protected void Attack()
     {
-        print(gameObject.name + " attacks!");
+        //print(gameObject.name + " attacks!");
+        gameObject.GetComponent<EnemyWeapon>().Fire();
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-        
-    //    if (collision.gameObject.CompareTag("Boundary") || collision.gameObject.CompareTag("Enemy")) {
-    //        print(collision.gameObject.tag);
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-    //    }
-    //}
+    protected void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            //DIE!!!!!!!
+            //cool fun death effects go here
+            Destroy(gameObject);
+        }
+        //print(gameObject.name + " took " + damage + " damage!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Boundary") || collision.gameObject.CompareTag("Enemy"))
+        {
+            //print(collision.gameObject.tag);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+            TakeDamage(collision.GetComponent<Projectile>().damage);
+        }
+    }
 }
