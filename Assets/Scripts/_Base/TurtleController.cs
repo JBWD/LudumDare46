@@ -13,12 +13,14 @@ public partial class TurtleController : MonoBehaviour
     void Start()
     {
         Start_W();
+        Start_S();
     }
 
     // Update is called once per frame
     void Update()
     {
         Update_W();
+        Update_S();
     }
 
 }

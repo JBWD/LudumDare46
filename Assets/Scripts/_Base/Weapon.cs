@@ -54,9 +54,9 @@ public partial class Weapon : MonoBehaviour
                 direction.Normalize();
                 GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, myPos, Quaternion.identity);
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<Projectile>().ProjectileSpeed;
+                projectile.GetComponent<Projectile>().SetDamage(currentDamage);
+                projectile.GetComponent<Projectile>().SetTag(gameObject.tag);
                 break;
-            
-            
         }
         
     }

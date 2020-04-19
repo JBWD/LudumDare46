@@ -14,7 +14,7 @@ public partial class TurtleController : MonoBehaviour
     }
 
     public List<EquippedItems> items = new List<EquippedItems>();
-    public int health;
+    public float health;
 
 
 
