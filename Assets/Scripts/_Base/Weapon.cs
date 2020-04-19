@@ -49,7 +49,7 @@ public partial class Weapon : MonoBehaviour
         switch (fireMode)
         {
             case FireMode.OneLane:
-                Vector2 myPos = new Vector2(transform.position.x, transform.position.y + 1);
+                Vector2 myPos = new Vector2(transform.position.x, transform.position.y);
                 Vector2 direction = target - myPos;
                 direction.Normalize();
                 GameObject projectile = (GameObject)Instantiate(ProjectilePrefab, myPos, Quaternion.identity);

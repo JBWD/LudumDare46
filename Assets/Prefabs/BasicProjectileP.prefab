@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5983823462381401172}
   - component: {fileID: 5159248766787395775}
   - component: {fileID: 4782802198583022566}
+  - component: {fileID: -6215378699425975567}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: BasicProjectileP
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpeed: 10
   damage: 1
+  parentTag: 
   destructionSound: {fileID: 8300000, guid: 1fdc9e99e77c901448061cfac708c635, type: 3}
   destructionPrefab: {fileID: 5901427738391921381, guid: 4718dd96f45592342b7177f47ac78ade,
     type: 3}
@@ -138,3 +140,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!114 &-6215378699425975567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3016369570303320557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb4217283330f646b3f483e1507e809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

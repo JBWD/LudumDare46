@@ -46,7 +46,7 @@ public partial class Projectile : MonoBehaviour
                 Destroy(obj, 2);
                 if (destructionSound != null)
                 {
-                    CCS.SoundPlayer.SoundManager.Instance.PlaySound(CCS.SoundPlayer.MixerPlayer.Explosions, destructionSound);
+                    CCS.SoundPlayer.SoundManager.Instance.PlaySoundCombined(CCS.SoundPlayer.MixerPlayer.Explosions, destructionSound,Random.Range(.6f,1));
                 }
                 Destroy(gameObject);
             }

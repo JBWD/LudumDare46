@@ -37,7 +37,17 @@ public partial class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start_W()
     {
-
+        for(int i = 0;i<items.Count;i++)
+        {
+            if (i == 0)
+            {
+                items[i].equippedObject.SetActive(true);
+            }
+            else
+            {
+                items[i].equippedObject.SetActive(false) ;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -155,4 +165,32 @@ public partial class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0,0, Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg + -90);
     }
+
+    public void SwapWeapon()
+    {
+        int currentWeapon = 0;
+        for(int i = 0;i<items.Count;i++)
+        {
+            if(items[i].equippedObject.activeInHierarchy)
+            {
+                currentWeapon = i;
+                break;
+            }
+        }
+        if(currentWeapon == items.Count -1)
+        {
+            currentWeapon = 0;
+        }
+        for(int i = 0;i<items.Count;i++)
+        {
+            if (i == currentWeapon)
+                items[i].equippedObject.SetActive(true);
+            else
+            {
+                items[i].equippedObject.SetActive(false);
+            }
+        }
+
+    }
+
 }

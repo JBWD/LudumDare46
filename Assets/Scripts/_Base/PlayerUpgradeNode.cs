@@ -6,7 +6,7 @@ public class PlayerUpgradeNode : UpgradeNode
 {
 
     public PlayerUpgradeValues upgrade;
-    
+    public List<GameObject> UpgradeSprite = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class PlayerUpgradeNode : UpgradeNode
         {
             DowngradeButton.onClick.AddListener(() => DownGrade());
         }
+        UpdateLevelInfo();
     }
 
     // Update is called once per frame
@@ -29,12 +30,13 @@ public class PlayerUpgradeNode : UpgradeNode
     public override void Upgrade()
     {
         int level = GameManager.Instance.GetCurrentUpgradeLevel(upgrade);
-        if (level + 1 < CostOfUpgrades.Count)
+        if (level < CostOfUpgrades.Count)
         {
-            if (!GameManager.Instance.AddPlayerUpgrade(upgrade, CostOfUpgrades[level + 1]))
+            if (!GameManager.Instance.AddPlayerUpgrade(upgrade, CostOfUpgrades[level]))
             {
                 Debug.Log("Wasnt able to purchase the upgrade not enough money.");
             }
+            UpdateLevelInfo();
         }
         else
         {
@@ -48,6 +50,23 @@ public class PlayerUpgradeNode : UpgradeNode
         if (level > CostOfUpgrades.Count && level < CostOfUpgrades.Count)
         {
             GameManager.Instance.SubtractPlayerUpgrade(upgrade, CostOfUpgrades[level]);
+            UpdateLevelInfo();
+        }
+    }
+
+    void UpdateLevelInfo()
+    {
+        int value = GameManager.Instance.GetCurrentUpgradeLevel(upgrade);
+        for(int i = 0;i<UpgradeSprite.Count;i++)
+        {
+            if(i<value)
+            {
+                UpgradeSprite[i].SetActive(true);
+            }
+            else
+            {
+                UpgradeSprite[i].SetActive(false);
+            }
         }
     }
 

@@ -63,6 +63,7 @@ public partial class EnemyController : MonoBehaviour
                 if (chance <= attackChance)
                 {
                     Attack();
+                    
                 }
             }
         }

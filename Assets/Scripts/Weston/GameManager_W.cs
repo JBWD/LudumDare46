@@ -71,7 +71,7 @@ public partial class GameManager : MonoBehaviour
         if (playerUpgrades.ContainsKey(upgrade))
         {           
             playerUpgrades[upgrade] = playerUpgrades[upgrade] +1;
-            Debug.Log("Upgraded Turtle");
+            Debug.Log("Upgraded Player");
         }
         else
         {
@@ -189,4 +189,11 @@ public partial class GameManager : MonoBehaviour
     {
         SoundManager.Instance.TransitionSound(MixerPlayer.Music, InGameMusic, 1, 2);
     }
+
+    public void SwapPlayerWeapon()
+    {
+        player.SwapWeapon();
+    }
+
+
 }
