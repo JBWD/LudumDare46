@@ -177,7 +177,9 @@ public partial class PlayerController : MonoBehaviour
                 break;
             }
         }
-        if(currentWeapon == items.Count -1)
+        
+        currentWeapon++;
+        if(currentWeapon == items.Count)
         {
             currentWeapon = 0;
         }
@@ -190,6 +192,7 @@ public partial class PlayerController : MonoBehaviour
                 items[i].equippedObject.SetActive(false);
             }
         }
+       
 
     }
 

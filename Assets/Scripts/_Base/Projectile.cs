@@ -38,8 +38,12 @@ public partial class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        Debug.Log("Collision Tag: " + collision.gameObject.tag+ " =  " + 
+            "Parent Tag: "+parentTag);
         if (parentTag != collision.gameObject.tag)
         {
+            
             if (collision.tag == "Player" || collision.tag == "Turtle" || collision.tag == "Enemy")
             {
                 GameObject obj = Instantiate(destructionPrefab, transform.position, Quaternion.identity);

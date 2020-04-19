@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3016369570303320557
+--- !u!1 &5297544895121073341
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8424992649391705174}
-  - component: {fileID: 8782346181538952758}
-  - component: {fileID: 5983823462381401172}
-  - component: {fileID: 5159248766787395775}
-  - component: {fileID: 4782802198583022566}
-  - component: {fileID: -6215378699425975567}
+  - component: {fileID: 1491662390190606598}
+  - component: {fileID: 1853737524648293222}
+  - component: {fileID: 3698065091308957956}
+  - component: {fileID: 2864764678958360047}
+  - component: {fileID: 2451937753741760182}
+  - component: {fileID: 5325065826573055905}
   m_Layer: 0
-  m_Name: BasicProjectileP
+  m_Name: AreaOfEffectProjectileP
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8424992649391705174
+--- !u!4 &1491662390190606598
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,14 +35,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &8782346181538952758
+--- !u!50 &1853737524648293222
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -56,13 +56,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5983823462381401172
+--- !u!114 &3698065091308957956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29fbbd6d5838c7546a075010e4219b98, type: 3}
@@ -72,15 +72,15 @@ MonoBehaviour:
   damage: 1
   parentTag: Player
   destructionSound: {fileID: 8300000, guid: 1fdc9e99e77c901448061cfac708c635, type: 3}
-  destructionPrefab: {fileID: 5901427738391921381, guid: 4718dd96f45592342b7177f47ac78ade,
+  destructionPrefab: {fileID: 7231741372591690527, guid: 9458d2feb651392469a4ae74217d300b,
     type: 3}
---- !u!212 &5159248766787395775
+--- !u!212 &2864764678958360047
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -124,13 +124,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4782802198583022566
+--- !u!58 &2451937753741760182
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -140,13 +140,13 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
---- !u!114 &-6215378699425975567
+--- !u!114 &5325065826573055905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016369570303320557}
+  m_GameObject: {fileID: 5297544895121073341}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: deb4217283330f646b3f483e1507e809, type: 3}

@@ -41,6 +41,8 @@ public partial class Weapon : MonoBehaviour
 
     public virtual void Fire()
     {
+        if (GameManager.Instance.OverUI())
+            return;
         Vector2 target = Camera.main.ScreenToWorldPoint((Vector2)(Input.mousePosition));
 
 

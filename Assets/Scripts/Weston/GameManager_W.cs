@@ -195,5 +195,8 @@ public partial class GameManager : MonoBehaviour
         player.SwapWeapon();
     }
 
-
+    public bool OverUI()
+    {
+        return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
 }
