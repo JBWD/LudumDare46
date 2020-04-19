@@ -18,5 +18,8 @@ public partial class Weapon : MonoBehaviour
     {
         currentDamage = _baseDamage + upgrade * upgradeDamageChanger;
         currentFireRate = firerate - upgrade * fireRateChanger;
+        
     }
+
+
 }

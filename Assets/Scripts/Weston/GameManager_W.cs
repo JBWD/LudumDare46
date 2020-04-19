@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CCS.SoundPlayer;
 public enum PlayerUpgradeValues
 {
     Weapon1,
@@ -45,13 +45,14 @@ public partial class GameManager : MonoBehaviour
     public PlayerController player;
     public TurtleController turtle;
 
-
+    public AudioClip MenuMusic,
+        InGameMusic;
 
 
     // Start is called before the first frame update
     void Start_W()
     {
-        
+        PlayMenuMusic();
     }
 
     // Update is called once per frame
@@ -178,5 +179,14 @@ public partial class GameManager : MonoBehaviour
     public void GameOver()
     {
         //Display the GameOverScreen;
+    }
+
+    public void PlayMenuMusic()
+    {
+        SoundManager.Instance.TransitionSound(MixerPlayer.Music, MenuMusic, 1, 2);
+    }
+    public void PlayInGameMusic()
+    {
+        SoundManager.Instance.TransitionSound(MixerPlayer.Music, InGameMusic, 1, 2);
     }
 }

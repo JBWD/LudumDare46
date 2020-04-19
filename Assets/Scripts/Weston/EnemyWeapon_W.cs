@@ -10,7 +10,6 @@ public partial class EnemyWeapon
 
     public Transform target;
 
-
     public override void Update()
     {
         fireTime += Time.deltaTime;
@@ -18,13 +17,14 @@ public partial class EnemyWeapon
         {
             Fire();
         }
+
     }
 
     public override void Fire()
     {
         if(FireSound != null)
         {
-            CCS.SoundPlayer.SoundManager.Instance.PlaySound(CCS.SoundPlayer.MixerPlayer.Instantiations, FireSound);
+            CCS.SoundPlayer.SoundManager.Instance.PlaySoundCombined(CCS.SoundPlayer.MixerPlayer.Instantiations, FireSound, UnityEngine.Random.Range(.6f,1f));
         }
         Vector2 target = this.target.position;
 
