@@ -82,7 +82,7 @@ public partial class EnemyController : MonoBehaviour
         return new Vector2(Random.Range(2f, 8f), Random.Range(-4.5f, 4.5f));
     }
 
-    protected void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
