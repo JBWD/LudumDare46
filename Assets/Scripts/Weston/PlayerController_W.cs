@@ -43,7 +43,7 @@ public partial class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update_W()
     {
-
+        RotateToMouse();
     }
 
 
@@ -145,5 +145,14 @@ public partial class PlayerController : MonoBehaviour
         {
             health = currentTotalHealth;
         }
+    }
+
+    public void RotateToMouse()
+    {
+        Vector2 mousePos = Input.mousePosition;
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z - Camera.main.transform.position.z));
+
+        transform.rotation = Quaternion.Euler(0,0, Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg + -90);
     }
 }
