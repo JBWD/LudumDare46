@@ -51,7 +51,31 @@ public partial class TurtleController : MonoBehaviour
             //cool fun death effects go here
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine("ShowHit");
+        }
         //print(gameObject.name + " took " + damage + " damage!");
+    }
+
+    protected IEnumerator ShowHit()
+    {
+        //Color original = GetComponentInChildren<SpriteRenderer>().color;
+        float ElapsedTime = 0;
+        float TotalTime = .1f;
+        while (ElapsedTime < TotalTime)
+        {
+            ElapsedTime += Time.deltaTime;
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, (ElapsedTime / TotalTime));
+            yield return new WaitForEndOfFrame();
+        }
+        ElapsedTime = 0;
+        while (ElapsedTime < TotalTime)
+        {
+            ElapsedTime += Time.deltaTime;
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.red, Color.white, (ElapsedTime / TotalTime));
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

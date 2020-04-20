@@ -14,6 +14,7 @@ public partial class EnemySpawner : MonoBehaviour
     public float spawnTimer = 6;
     private float spawnTimerCD;
     private float spawnChanceSum = 0;
+    public bool paused = false;
 
     // Start is called before the first frame update
     void Start_S()
@@ -44,21 +45,24 @@ public partial class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update_S()
     {
-        spawnTimerCD -= Time.deltaTime;
-        if (spawnTimerCD < 0)
+        if (!paused)
         {
-            spawnTimerCD = spawnTimer;
-            float chance = Random.Range(0, spawnChanceSum);
-            for (int i = 0; i < enemyTypes.Length; i++)
+            spawnTimerCD -= Time.deltaTime;
+            if (spawnTimerCD < 0)
             {
-                if (chance <= enemyTypes[i].spawnChance)
+                spawnTimerCD = spawnTimer;
+                float chance = Random.Range(0, spawnChanceSum);
+                for (int i = 0; i < enemyTypes.Length; i++)
                 {
-                    //print(enemyTypes[i].enemy.name + " has been spawned");
-                    Instantiate(enemyTypes[i].enemy, new Vector3(12, 0, 2), gameObject.transform.rotation);
-                }
-                else
-                {
-                    chance += enemyTypes[i].spawnChance;
+                    if (chance <= enemyTypes[i].spawnChance)
+                    {
+                        //print(enemyTypes[i].enemy.name + " has been spawned");
+                        Instantiate(enemyTypes[i].enemy, new Vector3(12, 0, 2), gameObject.transform.rotation);
+                    }
+                    else
+                    {
+                        chance += enemyTypes[i].spawnChance;
+                    }
                 }
             }
         }

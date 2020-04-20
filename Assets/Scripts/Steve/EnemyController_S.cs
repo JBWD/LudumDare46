@@ -101,20 +101,20 @@ public partial class EnemyController : MonoBehaviour
 
     protected IEnumerator ShowHit()
     {
-        Color original = GetComponentInChildren<SpriteRenderer>().color;
+        //Color original = GetComponentInChildren<SpriteRenderer>().color;
         float ElapsedTime = 0;
         float TotalTime = .1f;
         while (ElapsedTime < TotalTime)
         {
             ElapsedTime += Time.deltaTime;
-            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(original, new Color(1, 0, 0, 1f), (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
         ElapsedTime = 0;
         while (ElapsedTime < TotalTime)
         {
             ElapsedTime += Time.deltaTime;
-            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 0, 0, 1f), original, (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.red, Color.white, (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
     }
