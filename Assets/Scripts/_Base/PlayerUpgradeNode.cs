@@ -6,7 +6,7 @@ public class PlayerUpgradeNode : UpgradeNode
 {
 
     public PlayerUpgradeValues upgrade;
-    public List<GameObject> UpgradeSprite = new List<GameObject>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +54,12 @@ public class PlayerUpgradeNode : UpgradeNode
         }
     }
 
-    void UpdateLevelInfo()
+    public override void UpdateLevelInfo()
     {
         int value = GameManager.Instance.GetCurrentUpgradeLevel(upgrade);
-        for(int i = 0;i<UpgradeSprite.Count;i++)
+        for (int i = 0; i < UpgradeSprite.Count; i++)
         {
-            if(i<value)
+            if (i < value)
             {
                 UpgradeSprite[i].SetActive(true);
             }
@@ -69,5 +69,4 @@ public class PlayerUpgradeNode : UpgradeNode
             }
         }
     }
-
 }

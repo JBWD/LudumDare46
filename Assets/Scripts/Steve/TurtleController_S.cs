@@ -44,8 +44,8 @@ public partial class TurtleController : MonoBehaviour
     protected void TakeDamage(float damage)
     {
 
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             //DIE!!!!!!!
             //cool fun death effects go here
