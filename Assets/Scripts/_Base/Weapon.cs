@@ -32,7 +32,7 @@ public partial class Weapon : MonoBehaviour
     public virtual void Update()
     {
         fireTime += Time.deltaTime;
-        if(fireTime > firerate && Input.GetKeyDown(FireKey))
+        if(fireTime > firerate && Input.GetKey(FireKey))
         {
             Fire();
             fireTime = 0;

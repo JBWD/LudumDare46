@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class EnemyController : MonoBehaviour
 {
     public float moveSpeed = .06f;
-    public float health = 10;
+    public int health = 10;
 
     public float changeTimer = 2;
     private float changeTimerCD;
@@ -84,7 +84,7 @@ public partial class EnemyController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        health -= (int)damage;
         if (health <= 0)
         {
             //DIE!!!!!!!
@@ -101,21 +101,20 @@ public partial class EnemyController : MonoBehaviour
 
     protected IEnumerator ShowHit()
     {
-
+        Color original = GetComponentInChildren<SpriteRenderer>().color;
         float ElapsedTime = 0;
         float TotalTime = .1f;
         while (ElapsedTime < TotalTime)
         {
-            //Debug.Log("Starting Infestation!");
             ElapsedTime += Time.deltaTime;
-            this.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 1, 1, 1f), new Color(1, 0, 0, 1f), (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(original, new Color(1, 0, 0, 1f), (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
         ElapsedTime = 0;
         while (ElapsedTime < TotalTime)
         {
             ElapsedTime += Time.deltaTime;
-            this.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 0, 0, 1f), new Color(1, 1, 1, 1f), (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 0, 0, 1f), original, (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
     }
