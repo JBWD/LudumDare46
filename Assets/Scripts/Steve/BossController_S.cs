@@ -8,6 +8,8 @@ public partial class BossController : MonoBehaviour
     public State currentState = State.Offscreen;
 
     public int health = 4000;
+    public float fireRate = .5f;
+    private float fireRateCD;
     public float moveSpeed = 1;
     public float stateChangeTimer = 3;
     private float stateChangeTimerCD;
@@ -15,14 +17,17 @@ public partial class BossController : MonoBehaviour
     private int stateChangeCounter = 0;
     private int attackCounter = 0;
     private Vector2 movementVector;
-    private Vector2 exitVector = new Vector2(14, 0);
+    private Vector2 exitVector = new Vector2(20, 0);
     private Rigidbody2D rbody;
 
     // Start is called before the first frame update
     void Start_S()
     {
         stateChangeTimerCD = stateChangeTimer;
+        fireRateCD = fireRate;
+        GetComponent<BoxCollider2D>().enabled = false;
         rbody = GetComponent<Rigidbody2D>();
+        gameObject.GetComponent<EnemyWeapon>().SetTarget(FindObjectOfType<TurtleController>().transform);
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public partial class BossController : MonoBehaviour
                 else
                 {
                     currentState = State.Enter;
+                    FindObjectOfType<EnemySpawner>().paused = true;
                     movementVector = GetMovementVector();
                     stateChangeCounter = 0;
                     return;
@@ -63,8 +69,8 @@ public partial class BossController : MonoBehaviour
                 }
                 else
                 {
+                    GetComponent<BoxCollider2D>().enabled = true;
                     currentState = State.Idle;
-                    //gameObject.GetComponent<EnemyWeapon>().SetTarget(FindObjectOfType<TurtleController>().transform);
                 }
             }
         }
@@ -75,23 +81,86 @@ public partial class BossController : MonoBehaviour
             if (stateChangeTimerCD < 0)
             {
                 stateChangeTimerCD = stateChangeTimer;
-                currentState = State.Attacking;
+                currentState = State.Moving;
             }
+        }
+
+        else if (currentState == State.Moving)
+        {
+            //transform.position = Vector3.Lerp(gameObject.transform.position, new Vector2(gameObject.transform.position.x, 4.5f), moveSpeed);
+            Vector2 diffVector = rbody.position - new Vector2(gameObject.transform.position.x, 4.5f);
+            if (diffVector.magnitude > 1)
+            {
+                rbody.MovePosition(rbody.position - diffVector.normalized * moveSpeed);
+            }
+            else
+            {
+                if (diffVector.magnitude > .01)
+                {
+                    rbody.MovePosition(rbody.position - diffVector * moveSpeed);
+                }
+                else
+                {
+                    currentState = State.Attacking;
+                }
+            }
+            //if (Mathf.Abs(transform.position.y - 4.5f) < .1f)
+            //{
+            //    currentState = State.Attacking;
+            //}
         }
 
         else if (currentState == State.Attacking)
         {
-            //Do something cool
-            attackCounter++;
-            if (attackCounter >= 2)
+            Vector2 diffVector = rbody.position - new Vector2(gameObject.transform.position.x, -4.5f);
+            if (diffVector.magnitude > 1)
             {
-                currentState = State.Exit;
-                attackCounter = 0;
+                rbody.MovePosition(rbody.position - diffVector.normalized * moveSpeed);
             }
             else
             {
-                currentState = State.Idle;
+                if (diffVector.magnitude > .01)
+                {
+                    rbody.MovePosition(rbody.position - diffVector * moveSpeed);
+                }
+                else
+                {
+                    attackCounter++;
+                    if (attackCounter >= 2)
+                    {
+                        GetComponent<BoxCollider2D>().enabled = false;
+                        FindObjectOfType<EnemySpawner>().paused = false;
+                        currentState = State.Exit;
+                        attackCounter = 0;
+                    }
+                    else
+                    {
+                        currentState = State.Idle;
+                    }
+                }
             }
+
+            print("attacking");
+            fireRateCD -= Time.deltaTime;
+            if (fireRateCD < 0)
+            {
+                fireRateCD = fireRate;
+                gameObject.GetComponent<EnemyWeapon>().Fire();
+            }
+            
+            //if (Mathf.Abs(transform.position.y - -4.5f) < .1f)
+            //{
+            //    attackCounter++;
+            //    if (attackCounter >= 2)
+            //    {
+            //        currentState = State.Exit;
+            //        attackCounter = 0;
+            //    }
+            //    else
+            //    {
+            //        currentState = State.Idle;
+            //    }
+            //}
         }
 
         else if (currentState == State.Exit)
@@ -140,20 +209,20 @@ public partial class BossController : MonoBehaviour
 
     protected IEnumerator ShowHit()
     {
-        Color original = GetComponentInChildren<SpriteRenderer>().color;
+        //Color original = GetComponentInChildren<SpriteRenderer>().color;
         float ElapsedTime = 0;
         float TotalTime = .1f;
         while (ElapsedTime < TotalTime)
         {
             ElapsedTime += Time.deltaTime;
-            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(original, new Color(1, 0, 0, 1f), (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
         ElapsedTime = 0;
         while (ElapsedTime < TotalTime)
         {
             ElapsedTime += Time.deltaTime;
-            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(new Color(1, 0, 0, 1f), original, (ElapsedTime / TotalTime));
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.red, Color.white, (ElapsedTime / TotalTime));
             yield return new WaitForEndOfFrame();
         }
     }

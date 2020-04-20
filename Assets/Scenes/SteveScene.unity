@@ -1152,12 +1152,47 @@ PrefabInstance:
     - target: {fileID: -1199995357128476571, guid: 4e7e5eb21738901489270650ba3a976c,
         type: 3}
       propertyPath: moveSpeed
-      value: 0.01
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -1199995357128476571, guid: 4e7e5eb21738901489270650ba3a976c,
         type: 3}
       propertyPath: stateChangeTimer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1199995357128476571, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: currentState
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: _baseDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: damageRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: currentDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: currentFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: fireRateChanger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537447668760237709, guid: 4e7e5eb21738901489270650ba3a976c,
+        type: 3}
+      propertyPath: upgradeDamageChanger
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9115114034683750168, guid: 4e7e5eb21738901489270650ba3a976c,
         type: 3}
@@ -1167,7 +1202,7 @@ PrefabInstance:
     - target: {fileID: 9115114034683750175, guid: 4e7e5eb21738901489270650ba3a976c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.17
+      value: 19.99
       objectReference: {fileID: 0}
     - target: {fileID: 9115114034683750175, guid: 4e7e5eb21738901489270650ba3a976c,
         type: 3}
@@ -1419,7 +1454,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedValue: 0.001
   items: []
-  health: 2000
+  currentHealth: 0
+  startingHealth: 1000
+  healthUpgradeAmount: 0
+  shieldStrength: 0
+  shieldUpgradeAmount: 0
+  armorStrength: 0
+  armorUpgradeAmount: 0
 --- !u!1 &1527570726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3099462914702701599, guid: d081b065d51876c4a8d2bac57d3a77ad,
@@ -1561,6 +1602,7 @@ MonoBehaviour:
   - enemy: {fileID: 3788753518550656480, guid: c0684783db40d504abc036a85c27e6f7, type: 3}
     spawnChance: 10
   spawnTimer: 6
+  paused: 0
 --- !u!114 &1744956983
 MonoBehaviour:
   m_ObjectHideFlags: 0
