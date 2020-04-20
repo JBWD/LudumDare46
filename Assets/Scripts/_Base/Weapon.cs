@@ -25,7 +25,7 @@ public partial class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fireTime = 0;
+        fireTime = firerate;
         //StartCoroutine(FireRoutine());
     }
 
@@ -39,6 +39,7 @@ public partial class Weapon : MonoBehaviour
             fireTime = 0;
         }
     }
+
     IEnumerator FireRoutine()
     {
         while (true) {

@@ -199,6 +199,7 @@ public partial class GameManager : MonoBehaviour
     public void GameOver()
     {
         //Display the GameOverScreen;
+        PauseGame();
         gameOverPanel.SetActive(true);
         
     }

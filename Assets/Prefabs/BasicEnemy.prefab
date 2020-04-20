@@ -169,7 +169,7 @@ MonoBehaviour:
     type: 3}
   fireMode: 0
   FireKey: 0
-  FireSound: {fileID: 8300000, guid: 0d4f18ce7f288d04bb1b78c6c6a7accb, type: 3}
+  FireSound: {fileID: 8300000, guid: 35026df297aa2d54dabaf675f6763b10, type: 3}
   LaneDistance: 0
   target: {fileID: 0}
 --- !u!61 &3788753518550656486

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public partial class BossController : MonoBehaviour
 {
+
+    public GameObject WinScreen;
     // Start is called before the first frame update
     void Start_W()
     {
@@ -14,5 +16,12 @@ public partial class BossController : MonoBehaviour
     void Update_W()
     {
         
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.PauseGame();
+        WinScreen.SetActive(true);
     }
 }

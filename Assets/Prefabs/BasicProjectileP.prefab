@@ -71,7 +71,7 @@ MonoBehaviour:
   ProjectileSpeed: 10
   damage: 1
   parentTag: Player
-  destructionSound: {fileID: 8300000, guid: 1fdc9e99e77c901448061cfac708c635, type: 3}
+  destructionSound: {fileID: 8300000, guid: 35026df297aa2d54dabaf675f6763b10, type: 3}
   destructionPrefab: {fileID: 5901427738391921381, guid: 4718dd96f45592342b7177f47ac78ade,
     type: 3}
 --- !u!58 &4782802198583022566

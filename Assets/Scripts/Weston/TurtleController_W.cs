@@ -5,6 +5,8 @@ using UnityEngine;
 
 public partial class TurtleController : MonoBehaviour
 {
+
+    public GameObject gameOverPanel;
     [System.Serializable]
     public class EquippedItems
     {
@@ -22,6 +24,12 @@ public partial class TurtleController : MonoBehaviour
     public float armorStrength = 0;
     public float armorUpgradeAmount = 0;
 
+
+    public void OnDestroy()
+    {
+        GameManager.Instance.PauseGame();
+        gameOverPanel.SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start_W()
