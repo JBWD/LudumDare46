@@ -138,7 +138,7 @@ public partial class GameManager : MonoBehaviour
     }
     public void UpdateTurtle(TurtleUpgradeValues upgrade, int level)
     {
-        turtle.UpdateTurtle(turtleUpgrades);
+        turtle.UpdateTurtle(upgrade,level);
     }
 
     public void TogglePause()

@@ -30,14 +30,14 @@ public class TurtleUpgradeNode : UpgradeNode
     {
         
         int level = GameManager.Instance.GetCurrentUpgradeLevel(upgrade);
-        if (level +1 < CostOfUpgrades.Count )
+        if (level < CostOfUpgrades.Count )
         {
             
-            if(!GameManager.Instance.AddTurtleUpgrade(upgrade, CostOfUpgrades[level + 1]))
+            if(!GameManager.Instance.AddTurtleUpgrade(upgrade, CostOfUpgrades[level]))
             {
                 Debug.Log("Wasnt able to purchase the upgrade not enough money.");
             }
-            
+            UpdateLevelInfo();
         }
         else
         {
@@ -55,6 +55,22 @@ public class TurtleUpgradeNode : UpgradeNode
         else
         {
             //Already at the bottom.
+        }
+    }
+
+    public override void UpdateLevelInfo()
+    {
+        int value = GameManager.Instance.GetCurrentUpgradeLevel(upgrade);
+        for (int i = 0; i < UpgradeSprite.Count; i++)
+        {
+            if (i < value)
+            {
+                UpgradeSprite[i].SetActive(true);
+            }
+            else
+            {
+                UpgradeSprite[i].SetActive(false);
+            }
         }
     }
 }

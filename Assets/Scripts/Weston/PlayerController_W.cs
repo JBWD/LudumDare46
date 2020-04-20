@@ -108,7 +108,7 @@ public partial class PlayerController : MonoBehaviour
             case PlayerUpgradeValues.Armor3:
                 break;
             case PlayerUpgradeValues.Movement:
-                currentMoveSpeed = moveSpeed * moveSpeedChanger * upgradeLevel;
+                currentMoveSpeed += moveSpeedChanger * upgradeLevel;
                 break;
             case PlayerUpgradeValues.Strength:
                 break;

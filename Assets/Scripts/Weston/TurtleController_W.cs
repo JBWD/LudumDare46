@@ -14,15 +14,19 @@ public partial class TurtleController : MonoBehaviour
     }
 
     public List<EquippedItems> items = new List<EquippedItems>();
-    public float health;
-
-
+    public float currentHealth;
+    public float startingHealth = 1000;
+    public float healthUpgradeAmount;
+    public float shieldStrength = 0;
+    public float shieldUpgradeAmount = 0;
+    public float armorStrength = 0;
+    public float armorUpgradeAmount = 0;
 
 
     // Start is called before the first frame update
     void Start_W()
     {
-        
+        currentHealth = startingHealth;
     }
 
     // Update is called once per frame
@@ -54,11 +58,28 @@ public partial class TurtleController : MonoBehaviour
     }
 
 
-    public void UpdateTurtle(Dictionary<TurtleUpgradeValues, int> upgrades)
+    public void UpdateTurtle(TurtleUpgradeValues value, int upgradeLevel)
     {
-        foreach(KeyValuePair<TurtleUpgradeValues,int> upgrade in upgrades)
+        switch (value)
         {
-            
+            case TurtleUpgradeValues.Armor1:
+                armorStrength += armorUpgradeAmount;
+                break;
+            case TurtleUpgradeValues.Armor2:
+                break;
+            case TurtleUpgradeValues.Armor3:
+                break;
+            case TurtleUpgradeValues.Movement:
+                break;
+            case TurtleUpgradeValues.Strength:
+                break;
+            case TurtleUpgradeValues.Health:
+                currentHealth += healthUpgradeAmount;
+                startingHealth += healthUpgradeAmount;
+                break;
+            case TurtleUpgradeValues.Shield:
+                shieldStrength += shieldUpgradeAmount;
+                break;
         }
     }
 }

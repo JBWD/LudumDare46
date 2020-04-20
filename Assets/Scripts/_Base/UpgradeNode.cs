@@ -9,7 +9,7 @@ public abstract class UpgradeNode : MonoBehaviour
         DowngradeButton;
 
     public List<int> CostOfUpgrades;
-
+    public List<GameObject> UpgradeSprite = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,11 @@ public abstract class UpgradeNode : MonoBehaviour
     public virtual void DownGrade()
     {
 
+    }
+
+    public virtual void UpdateLevelInfo()
+    {
+       
     }
 
 }
