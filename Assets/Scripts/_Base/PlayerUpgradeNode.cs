@@ -19,6 +19,8 @@ public class PlayerUpgradeNode : UpgradeNode
         {
             DowngradeButton.onClick.AddListener(() => DownGrade());
         }
+        if (CostOfUpgrades.Count > 0)
+            currencyTextBox.text = CostOfUpgrades[0].ToString();
         UpdateLevelInfo();
     }
 
@@ -36,6 +38,7 @@ public class PlayerUpgradeNode : UpgradeNode
             {
                 Debug.Log("Wasnt able to purchase the upgrade not enough money.");
             }
+            currencyTextBox.text = CostOfUpgrades[level].ToString();
             UpdateLevelInfo();
         }
         else

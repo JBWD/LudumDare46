@@ -53,7 +53,11 @@ public partial class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update_W()
     {
-        RotateToMouse();
+        if(!GameManager.Instance.paused)
+        {
+            RotateToMouse();
+        }
+        
     }
 
 

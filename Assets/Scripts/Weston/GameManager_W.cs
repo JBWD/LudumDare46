@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CCS.SoundPlayer;
+using UnityEngine.SceneManagement;
+
 public enum PlayerUpgradeValues
 {
     Weapon1,
@@ -40,27 +42,43 @@ public partial class GameManager : MonoBehaviour
     Dictionary<PlayerUpgradeValues, int> playerUpgrades = new Dictionary<PlayerUpgradeValues, int>();
     Dictionary<TurtleUpgradeValues, int> turtleUpgrades = new Dictionary<TurtleUpgradeValues, int>();
 
-    bool paused = false;
+    public bool paused = false;
 
     public PlayerController player;
     public TurtleController turtle;
 
     public AudioClip MenuMusic,
         InGameMusic;
-
-
+    public int population = 1000;
+    public float popIncreaseRate;
+    public float popIncreaseAmountPercentage;
+    private float popincreaseTimer = 0;
     // Start is called before the first frame update
     void Start_W()
     {
-        PlayMenuMusic();
+        SoundManager.Instance.PlaySound(MixerPlayer.Music,MenuMusic);
+        PauseGame();
     }
 
     // Update is called once per frame
     void Update_W()
     {
-        
+        if(!paused)
+        {
+            popincreaseTimer += Time.deltaTime;
+            if (popincreaseTimer > popIncreaseRate)
+            {
+                IncreasePopulation();
+            }
+        }
+       
     }
 
+    public void IncreasePopulation()
+    {
+        population += (int)(population * popIncreaseAmountPercentage / 100);
+        popincreaseTimer = 0;
+    }
 
     public bool AddPlayerUpgrade(PlayerUpgradeValues upgrade, int cost)
     {
@@ -152,12 +170,14 @@ public partial class GameManager : MonoBehaviour
     public void PauseGame()
     {
         //Keeps Everything moving turns off PlayerController and TurtleController
+        Time.timeScale = 0;
         paused = true;
     }
 
     public void ResumeGame()
     {
         paused = false;
+        Time.timeScale = 1;
         //Keeps Everything moving turns on PlayerController and TurtleController
     }
 
@@ -183,11 +203,12 @@ public partial class GameManager : MonoBehaviour
 
     public void PlayMenuMusic()
     {
-        SoundManager.Instance.TransitionSound(MixerPlayer.Music, MenuMusic, 1, 2);
+        SoundManager.Instance.PlaySoundOverride(MixerPlayer.Music, MenuMusic, 1);
     }
     public void PlayInGameMusic()
     {
-        SoundManager.Instance.TransitionSound(MixerPlayer.Music, InGameMusic, 1, 2);
+        SoundManager.Instance.PlaySoundOverride(MixerPlayer.Music, InGameMusic, 1);
+       
     }
 
     public void SwapPlayerWeapon()
@@ -198,5 +219,10 @@ public partial class GameManager : MonoBehaviour
     public bool OverUI()
     {
         return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

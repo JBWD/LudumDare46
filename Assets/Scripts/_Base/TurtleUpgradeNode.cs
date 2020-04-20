@@ -18,6 +18,9 @@ public class TurtleUpgradeNode : UpgradeNode
         {
             DowngradeButton.onClick.AddListener(() => DownGrade());
         }
+        if (CostOfUpgrades.Count > 0)
+            currencyTextBox.text = CostOfUpgrades[0].ToString();
+        UpdateLevelInfo();
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class TurtleUpgradeNode : UpgradeNode
             {
                 Debug.Log("Wasnt able to purchase the upgrade not enough money.");
             }
+            currencyTextBox.text = CostOfUpgrades[level].ToString();
             UpdateLevelInfo();
         }
         else
