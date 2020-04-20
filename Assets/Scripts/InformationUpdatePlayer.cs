@@ -12,7 +12,7 @@ public class InformationUpdatePlayer : MonoBehaviour
         weapon2,
         weapon3;
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         weapon1Text.text = "FireRate: " + weapon1.firerate + "\n"
             + "DAMaGE: " + weapon1.currentDamage;

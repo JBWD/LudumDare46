@@ -44,11 +44,13 @@ public partial class TurtleController : MonoBehaviour
     protected void TakeDamage(float damage)
     {
 
-        currentHealth -= damage;
+        currentHealth -= damage; 
+        GameManager.Instance.TakePopulationDamage((int)damage * 2 - (int)shieldStrength);
         if (currentHealth <= 0)
         {
             //DIE!!!!!!!
             //cool fun death effects go here
+           
             Destroy(gameObject);
         }
         //print(gameObject.name + " took " + damage + " damage!");
@@ -58,7 +60,8 @@ public partial class TurtleController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
-            TakeDamage(collision.GetComponent<Projectile>().damage);
+            TakeDamage(collision.GetComponent<Projectile>().damage - armorStrength);
+            
         }
     }
 }

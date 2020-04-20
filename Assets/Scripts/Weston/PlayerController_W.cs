@@ -11,7 +11,7 @@ public partial class PlayerController : MonoBehaviour
    
     public float moveSpeedChanger = .5f;
     public float currentMoveSpeed = 2f;
-
+    public Transform cannon;
 
     [System.Serializable]
     public class EquippedItems
@@ -165,9 +165,9 @@ public partial class PlayerController : MonoBehaviour
     {
         Vector2 mousePos = Input.mousePosition;
 
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z - Camera.main.transform.position.z));
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cannon.position.z - Camera.main.transform.position.z));
 
-        transform.rotation = Quaternion.Euler(0,0, Mathf.Atan2((mousePosition.y - transform.position.y), (mousePosition.x - transform.position.x)) * Mathf.Rad2Deg + -90);
+        cannon.rotation = Quaternion.Euler(0,0, Mathf.Atan2((mousePosition.y - cannon.position.y), (mousePosition.x - cannon.position.x)) * Mathf.Rad2Deg );
     }
 
     public void SwapWeapon()

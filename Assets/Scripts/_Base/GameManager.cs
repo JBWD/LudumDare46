@@ -23,7 +23,7 @@ public partial class GameManager : MonoBehaviour
     private void Awake()
     {
         Singleton();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         
     }
 

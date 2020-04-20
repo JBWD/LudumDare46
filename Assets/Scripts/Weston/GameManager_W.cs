@@ -195,10 +195,12 @@ public partial class GameManager : MonoBehaviour
         return 0;
     }
 
-
+    public GameObject gameOverPanel;
     public void GameOver()
     {
         //Display the GameOverScreen;
+        gameOverPanel.SetActive(true);
+        
     }
 
     public void PlayMenuMusic()
@@ -224,5 +226,57 @@ public partial class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+
+
+
+    public GameObject 
+        CivWorld,
+        ThrivingWorld,
+        Fertile,
+        Broken,
+        Bad,
+        Apocalyptic;
+
+    public void TakePopulationDamage(int damage)
+    {
+        Debug.Log("TakingDamage");
+        population -= damage;
+        CivWorld.SetActive(false);
+        ThrivingWorld.SetActive(false);
+        Fertile.SetActive(false);
+        Broken.SetActive(false);
+        Bad.SetActive(false);
+        Apocalyptic.SetActive(false);
+
+        if(population>2000)
+        {
+            CivWorld.SetActive(true);
+        }
+        if (population > 1500)
+        {
+            ThrivingWorld.SetActive(true);
+        }
+        if (population > 1200)
+        {
+            Fertile.SetActive(true);
+        }
+        if (population > 900)
+        {
+            Broken.SetActive(true);
+        }
+        if (population > 600)
+        {
+            Bad.SetActive(true);
+        }
+        if (population > 0)
+        {
+            Apocalyptic.SetActive(true);
+
+        }
+
+        if (population < 0)
+            GameOver();
     }
 }

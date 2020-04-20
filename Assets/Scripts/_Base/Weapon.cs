@@ -26,16 +26,30 @@ public partial class Weapon : MonoBehaviour
     void Start()
     {
         fireTime = 0;
+        //StartCoroutine(FireRoutine());
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
         fireTime += Time.deltaTime;
-        if(fireTime > firerate && Input.GetKey(FireKey))
+        if (fireTime > firerate && Input.GetKey(FireKey))
         {
             Fire();
             fireTime = 0;
+        }
+    }
+    IEnumerator FireRoutine()
+    {
+        while (true) {
+            yield return new WaitUntil(() => fireTime > firerate);
+            if (Input.GetKey(FireKey))
+            {
+
+                Fire();
+                fireTime = 0;
+            }
+
         }
     }
 

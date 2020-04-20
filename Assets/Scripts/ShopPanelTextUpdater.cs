@@ -9,7 +9,7 @@ public class ShopPanelTextUpdater : MonoBehaviour
 
 
 
-    public void FixedUpdate()
+    public void Update()
     {
         UpdateCurrency();
     }

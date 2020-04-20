@@ -47,7 +47,7 @@ MonoBehaviour:
   damageRange: 10
   currentDamage: 20
   currentFireRate: 0.5
-  upgradeDamageChanger: 6
+  upgradeDamageChanger: 3
   fireRateChanger: 0.05
   firerate: 0.5
   ProjectilePrefab: {fileID: 3016369570303320557, guid: e92b5ba69684f4f429e29abf14ecc562,
