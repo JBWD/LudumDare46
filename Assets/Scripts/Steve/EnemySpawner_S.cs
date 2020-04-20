@@ -53,7 +53,7 @@ public partial class EnemySpawner : MonoBehaviour
             {
                 if (chance <= enemyTypes[i].spawnChance)
                 {
-                    print(enemyTypes[i].enemy.name + " has been spawned");
+                    //print(enemyTypes[i].enemy.name + " has been spawned");
                     Instantiate(enemyTypes[i].enemy, new Vector3(12, 0, 2), gameObject.transform.rotation);
                 }
                 else

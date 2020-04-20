@@ -39,8 +39,8 @@ public partial class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log("Collision Tag: " + collision.gameObject.tag+ " =  " + 
-            "Parent Tag: "+parentTag);
+        //Debug.Log("Collision Tag: " + collision.gameObject.tag+ " =  " + 
+        //    "Parent Tag: "+parentTag);
         if (parentTag != collision.gameObject.tag)
         {
             
